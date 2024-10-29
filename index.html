@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+
+    <!-- Link to Google Fonts for Great Vibes -->
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+        /* Base styles */
+        body {
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f3eb;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Heart styles and animation */
+        .heart {
+            position: absolute;
+            bottom: 0;
+            font-size: 20px;
+            color: #ff6b81;
+            animation: float 5s linear infinite, fade 5s linear infinite;
+        }
+
+        /* Animation keyframes for hearts */
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+            }
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Invitation Button */
+        .invite-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #8e44ad;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+        .invite-button:hover {
+            background-color: #732d91;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background-image: url('—Pngtree—elegant engagement wedding invitation with_15220390.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.4s ease;
+            position: relative;
+            color: #fff;
+            z-index: 100;
+        }
+
+        /* Close Button */
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .close-button:hover {
+            color: #ccc;
+        }
+
+        /* Content Styling */
+        h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 40px;
+            color: rgb(170, 189, 4);
+            margin: 0;
+            padding: 0;
+            letter-spacing: 3px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin: 10px 0;
+            color: rgb(170, 189, 4);
+        }
+
+        p {
+            font-size: 18px;
+            color: #ffebfc;
+            margin: 5px 0;
+        }
+
+        /* RSVP Button */
+        .rsvp-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #27ae60;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .rsvp-button:hover {
+            background-color: #219150;
+        }
+
+        /* RSVP Form Styles */
+        .rsvp-form {
+            display: none; /* Hide the RSVP form initially */
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .rsvp-form input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .submit-button {
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #8e44ad;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #732d91;
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating hearts container -->
+    <div id="heartsContainer"></div>
+
+    <!-- Invitation Button -->
+    <button class="invite-button" onclick="openInvitation()">Open Wedding Invitation</button>
+
+    <!-- Modal -->
+    <div id="invitationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeInvitation()">&times;</span>
+            <h3>You're Invited!</h3>
+            <p>To celebrate the wedding of</p>
+            <h2>Philisiwe Makhwasa</h2>
+            <h3>&</h3>
+            <h2>Jeremiah Myeni</h2>
+            <p>Saturday, 7 December 2024</p>
+            <p>at 10:00 AM</p>
+            <p>Usuka kwaMakhwasa</p>
+            <p>uya kwaMyeni, eDlangezwa</p>
+            <p>Reception to follow</p>
+
+            <!-- RSVP Button -->
+            <button class="rsvp-button" onclick="showRSVPForm()">RSVP</button>
+
+            <!-- RSVP Form -->
+            <div id="rsvpForm" class="rsvp-form">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="tel" id="phone" placeholder="Phone Number" required>
+                <button class="submit-button" onclick="submitRSVP()">Submit RSVP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for heart animations and modal -->
+    <script>
+        function openInvitation() {
+            document.getElementById("invitationModal").style.display = "flex";
+        }
+
+        function closeInvitation() {
+            document.getElementById("invitationModal").style.display = "none";
+        }
+
+        function showRSVPForm() {
+            const rsvpForm = document.getElementById("rsvpForm");
+            rsvpForm.style.display = rsvpForm.style.display === "none" ? "flex" : "none";
+        }
+
+        function submitRSVP() {
+            const name = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+            
+            if (name && phone) {
+                // Pre-filled WhatsApp message URL
+                const message = `Hello! My name is ${name}, and my phone number is ${phone}. I am RSVPing for the wedding.`;
+                const whatsappURL = `https://wa.me/27834901242?text=${encodeURIComponent(message)}`;
+                
+                // Open WhatsApp URL
+                window.open(whatsappURL, "_blank");
+            } else {
+                alert("Please fill in both your name and phone number.");
+            }
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById("invitationModal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // JavaScript for floating hearts animation
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "&#10084;"; // Heart symbol
+
+            // Set random position and size for each heart
+            heart.style.left = `${Math.random() * 100}vw`;
+            heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+
+            // Append to container
+            document.getElementById("heartsContainer").appendChild(heart);
+
+            // Remove heart after animation ends
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Generate hearts at intervals
+        setInterval(createHeart, 500);
+    </script>
+
+</body>
+</html>
